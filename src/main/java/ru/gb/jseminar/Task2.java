@@ -1,9 +1,8 @@
 package ru.gb.jseminar;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 import java.util.Map;
+import java.util.HashMap;
+import java.util.logging.Logger;
 
 public class Task2 {
 
@@ -17,15 +16,18 @@ public class Task2 {
 		taskMap.putIfAbsent("Москва", "Самара");
 		taskMap.putIfAbsent("Курск", "Пенза");
 		taskMap.putIfAbsent("Самара", "Курск");
-		System.out.println(taskMap);
-		System.out.println(tk.getFinalCity(taskMap));
+
+		Logger log = Logger.getLogger(Task2.class.getName());
+		log.info(String.valueOf(taskMap));
+		log.info(String.valueOf(task2.getFinalCity(taskMap)));
 	}
 
 	public String getFinalCity(final Map<String, String> map) {
-//		Map<Integer, Integer> checkMap = new HashMap();
-
-
-		return "";
+		for (String item : map.values()) {
+			if (!map.containsKey(item)) {
+				return item;
+			}
+		}
+		throw new IllegalStateException();
 	}
-
 }

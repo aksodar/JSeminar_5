@@ -12,9 +12,13 @@ public class Task2 {
 	// Пример 1: Input: s = [["Москва","Самара"], ["Курск","Пенза"],["Самара","Курск"]]  Output: Пенза
 	// Пример 2: Input: s = [["Москва","Самара"]]  Output: Самара
 	public static void main(final String[] args) {
-//		Task2 task2 = new Task2();
-//		List<Integer> taskList = new ArrayList<>(Arrays.asList(1, 2, 4, 33, 1, 100));
-//		System.out.println(task2.getFinalCity(taskList));
+		Task2 task2 = new Task2();
+		Map<String, String> taskMap = new HashMap<>();
+		taskMap.putIfAbsent("Москва", "Самара");
+		taskMap.putIfAbsent("Курск", "Пенза");
+		taskMap.putIfAbsent("Самара", "Курск");
+		System.out.println(taskMap);
+		System.out.println(tk.getFinalCity(taskMap));
 	}
 
 	public String getFinalCity(final Map<String, String> map) {

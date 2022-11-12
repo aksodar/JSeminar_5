@@ -5,7 +5,7 @@ import java.util.stream.Collectors;
 
 public class Decision implements Homework {
     @Override
-    public String popularNames(String data) {
+    public String popularNames(final String data) {
 
         Map<String, Integer> check = getMapOfCounts(getMap(data));
         Set<Integer> popular = new HashSet<>();
@@ -23,7 +23,7 @@ public class Decision implements Homework {
         } else return answer;
     }
 
-    private Map<String, List<String>> getMap(String input) {
+    private Map<String, List<String>> getMap(final String input) {
         Map<String, List<String>> map = new HashMap<>();
         if (input == null) {
             throw new IllegalStateException("String is null");
@@ -55,7 +55,7 @@ public class Decision implements Homework {
         return map;
     }
 
-    private Map<String, Integer> getMapOfCounts(Map<String, List<String>> namePhone) {
+    private Map<String, Integer> getMapOfCounts(final Map<String, List<String>> namePhone) {
         Map<String, Integer> result;
         Map<String, Integer> nameCount = new HashMap<>();
         namePhone.forEach((key, value) -> nameCount.put(key, value.size()));

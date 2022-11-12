@@ -8,5 +8,5 @@ public interface Homework {
     // Написать программу, которая найдет и выведет повторяющиеся имена с количеством повторений.
     // Отсортировать по убыванию популярности.
 
-    public String popularNames(String data);
+    String popularNames(String data);
 }

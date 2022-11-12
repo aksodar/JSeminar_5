@@ -5,14 +5,13 @@ import java.util.stream.Collectors;
 
 public class Decision implements Homework {
     @Override
-    public String sortedNames(String data) {
+    public String popularNames(String data) {
         return String.valueOf(getMapOfCounts(getMap(data))).replaceAll("[{.+}]", "");
     }
 
     private Map<String, Integer> getMap(String input) {
         Map<String, Integer> map = new HashMap<>();
         List<String> namePhone = List.of(input.split(";"));
-
         for (String item : namePhone) {
             String[] words = item.split(",");
             String key = words[0] + " " + words[1];
@@ -31,7 +30,7 @@ public class Decision implements Homework {
         result = nameCount.entrySet()
                 .stream()
                 .filter((entry) -> entry.getValue() > 1)
-                .sorted(Map.Entry.comparingByValue())
+                .sorted(Map.Entry.comparingByValue(Comparator.reverseOrder()))
                 .collect(Collectors.toMap(
                         Map.Entry::getKey,
                         Map.Entry::getValue,

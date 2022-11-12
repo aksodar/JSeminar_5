@@ -1,21 +1,19 @@
 package ru.gb.jseminar;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.TreeMap;
+import java.util.*;
+import java.util.stream.Collectors;
 
-public class Decision implements Homework{
+public class Decision implements Homework {
     @Override
     public String sortedNames(String data) {
-        return String.valueOf(getMap(data));
+        return String.valueOf(getMapOfCounts(getMap(data)));
     }
 
-    private HashMap<String, List<String>> getMap (String input) {
-        HashMap<String, List<String>> map = new HashMap<>();
+    private Map<String, List<String>> getMap(String input) {
+        Map<String, List<String>> map = new HashMap<>();
         List<String> namePhone = List.of(input.split(";"));
 
-        for (String item: namePhone) {
+        for (String item : namePhone) {
             String[] words = item.split(",");
             String key = words[0] + " " + words[1];
             if (map.containsKey(key)) {
@@ -29,9 +27,23 @@ public class Decision implements Homework{
         return map;
     }
 
-    private TreeMap<String, Integer> getMapOfCounts(HashMap<String, List<String>> namePhone) {
-        TreeMap<String, Integer> result = new TreeMap<>();
-
-        return null;
+    private Map<String, Integer> getMapOfCounts(Map<String, List<String>> namePhone) {
+        Map<String, Integer> result;
+        Map<String, Integer> intermediateResult = new HashMap<>();
+        namePhone.forEach((key, value) -> intermediateResult.put(key, value.size()));
+        result = intermediateResult.entrySet()
+                .stream()
+                .filter((entry) -> entry.getValue() > 1)
+                .sorted(Map.Entry.comparingByValue())
+                .collect(Collectors.toMap(
+                        Map.Entry::getKey,
+                        Map.Entry::getValue,
+                        (oldValue, newValue) -> oldValue, LinkedHashMap::new
+                ));
+        return result;
     }
+
+//    private Map<String, Integer> getSortedByCount(Map<String,Integer> nameCount){
+//        Map<String, >
+//    }
 }

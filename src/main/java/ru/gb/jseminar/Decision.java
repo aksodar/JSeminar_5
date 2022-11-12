@@ -11,15 +11,28 @@ public class Decision implements Homework {
 
     private Map<String, Integer> getMap(String input) {
         Map<String, Integer> map = new HashMap<>();
+        if (input == null) {
+            throw new IllegalStateException("String is null");
+        } else if (input.isEmpty()) {
+            throw new IllegalStateException("String is empty");
+        }
         List<String> namePhone = List.of(input.split(";"));
+
         for (String item : namePhone) {
             String[] words = item.split(",");
-            String key = words[0] + " " + words[1];
-            if (map.containsKey(key)) {
-                int temp = map.get(key);
-                map.put(key, ++temp);
+            if (words.length == 3
+                    && (words[0].chars().allMatch(Character::isLetter))
+                    && (words[1].chars().allMatch(Character::isLetter))
+                    && (words[2].chars().allMatch(Character::isDigit))) {
+                String key = words[0] + " " + words[1];
+                if (map.containsKey(key)) {
+                    int temp = map.get(key);
+                    map.put(key, ++temp);
+                } else {
+                    map.put(key, 1);
+                }
             } else {
-                map.put(key, 1);
+                throw new IllegalStateException("String is not valid");
             }
         }
         return map;

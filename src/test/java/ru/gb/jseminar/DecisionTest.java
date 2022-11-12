@@ -19,7 +19,7 @@ class DecisionTest {
                 "Ева,Дарахвелидзе,89010348765;" +
                 "Ева,Дарахвелидзе,89010344345;" +
                 "Андрей,Иванов,89050377654;" +
-                "Ева,Дарахвелидзе,89010344345;" +
+                "Ева,Дарахвелидзе,89010344355;" +
                 "Андрей,Иванов,89050377657;" +
                 "Дмитрий,Пономаренко,89344322343;";
 
@@ -70,7 +70,42 @@ class DecisionTest {
                 "Андрей,Иванов,89050377654;" +
                 "Дмитрий,Пономаренко,89344322343;";
 
-        String expected = "Ева Дарахвелидзе=3, Андрей Иванов=2";
+        String expected = "All people have one number";
+
+        String actual = decision.popularNames(input);
+
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    void popularNamesFailureEqualPopular() {
+        String input =
+                "Ева,Дарахвелидзе,89010348765;" +
+                "Ева,Дарахвелидзе,89010348766;" +
+                "Андрей,Иванов,89050377654;" +
+                "Андрей,Иванов,89050377674;" +
+                "Дмитрий,Пономаренко,89344322343;" +
+                "Дмитрий,Пономаренко,89344322393;";
+
+        String expected = "All people are equally popular";
+
+        String actual = decision.popularNames(input);
+
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    void popularNamesFailureEqualPhones() {
+        String input =
+                "Ева,Дарахвелидзе,89010348765;" +
+                "Ева,Дарахвелидзе,89010348769;" +
+                "Ева,Дарахвелидзе,89010348766;" +
+                "Андрей,Иванов,89050377654;" +
+                "Андрей,Иванов,89050377654;" + // одинаковая запись
+                "Дмитрий,Пономаренко,89344322343;" +
+                "Дмитрий,Пономаренко,89344322393;";
+
+        String expected = "Ева Дарахвелидзе=3, Дмитрий Пономаренко=2";
 
         String actual = decision.popularNames(input);
 

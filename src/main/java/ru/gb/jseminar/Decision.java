@@ -6,11 +6,25 @@ import java.util.stream.Collectors;
 public class Decision implements Homework {
     @Override
     public String popularNames(String data) {
-        return String.valueOf(getMapOfCounts(getMap(data))).replaceAll("[{.+}]", "");
+
+        Map<String, Integer> check = getMapOfCounts(getMap(data));
+        Set<Integer> popular = new HashSet<>();
+        String answer = String.valueOf(check).replaceAll("[{.+}]", "");
+
+        int count = check.values().stream()
+                .filter(e -> !popular.add(e))
+                .collect(Collectors.toSet()).size();
+
+        if (count == 1 && check.size() > 1) {
+            return "All people are equally popular";
+        }
+        else if (answer.isEmpty()) {
+            return "All people have one number";
+        } else return answer;
     }
 
-    private Map<String, Integer> getMap(String input) {
-        Map<String, Integer> map = new HashMap<>();
+    private Map<String, List<String>> getMap(String input) {
+        Map<String, List<String>> map = new HashMap<>();
         if (input == null) {
             throw new IllegalStateException("String is null");
         } else if (input.isEmpty()) {
@@ -26,10 +40,13 @@ public class Decision implements Homework {
                     && (words[2].chars().allMatch(Character::isDigit))) {
                 String key = words[0] + " " + words[1];
                 if (map.containsKey(key)) {
-                    int temp = map.get(key);
-                    map.put(key, ++temp);
+                    List<String> temp = map.get(key);
+                    if (!temp.contains(words[2])) {
+                        temp.add(words[2]);
+                        map.put(key, temp);
+                    }
                 } else {
-                    map.put(key, 1);
+                    map.put(key, new ArrayList<>(List.of(words[2])));
                 }
             } else {
                 throw new IllegalStateException("String is not valid");
@@ -38,8 +55,10 @@ public class Decision implements Homework {
         return map;
     }
 
-    private Map<String, Integer> getMapOfCounts(Map<String, Integer> nameCount) {
+    private Map<String, Integer> getMapOfCounts(Map<String, List<String>> namePhone) {
         Map<String, Integer> result;
+        Map<String, Integer> nameCount = new HashMap<>();
+        namePhone.forEach((key, value) -> nameCount.put(key, value.size()));
         result = nameCount.entrySet()
                 .stream()
                 .filter((entry) -> entry.getValue() > 1)

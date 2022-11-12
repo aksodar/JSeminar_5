@@ -35,8 +35,13 @@ public class Homework {
 
 		for (String item : textList) {
 			List<String> tmp = Arrays.asList(item.split(","));
-			phonebook.putIfAbsent(Long.parseLong(tmp.get(2)), Arrays.asList(tmp.get(0), tmp.get(1)));
+			if (tmp.size() == 3) {
+				phonebook.putIfAbsent(Long.parseLong(tmp.get(2)), Arrays.asList(tmp.get(0), tmp.get(1)));
+			} else {
+				throw new IllegalStateException("Неверный формат входных данных");
+			}
 		}
+
 		return phonebook;
 	}
 

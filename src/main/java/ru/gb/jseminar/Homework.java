@@ -13,7 +13,7 @@ public class Homework {
     // Отсортировать по убыванию популярности.
     public static void main(String[] args) {
         Homework hw = new Homework();
-        String data = "Ева,Дарахвелидзе,89010348765;Ева,Дарахвелидзе,89010344345;Андрей,Иванов,89050377654;" +
+        String data = "Андрей,Иванов,89050377654;" +
                 "Дмитрий,Пономаренко,89344322343;Дмитрий,Пономаренко,89344322234;Дмитрий,Пономаренко,89343462343;" +
                 "Ева,Дарахвелидзе,89010398365;Ева,Дарахвелидзе,89010334785;Андрей,Иванов,89050355554;" +
                 "Галина,Васильева,89053457654;";
@@ -40,13 +40,27 @@ public class Homework {
             }
         }
 
-        Map<String, Integer> result = new TreeMap<>(Collections.reverseOrder());
+        Map<Integer, List<String>> result = new TreeMap<>(Collections.reverseOrder());
 
 
 
         for (String item: map.keySet()) {
             if (map.get(item).size() > 1){
-                result.put(item, map.get(item).size());
+
+                int key = map.get(item).size();
+                System.out.println(item);
+
+                if (!result.containsKey(key)) {
+                    List<String> value = new ArrayList<>();
+                    value.add(item);
+                    result.put(map.get(item).size(), value);
+                }
+                else
+                {
+                    String value = item;
+                    result.get(key).addAll(Arrays.asList(value));
+                }
+
             }
 
         }

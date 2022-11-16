@@ -7,7 +7,8 @@ public class Homework {
     // Написать программу, которая найдет и выведет повторяющиеся имена с количеством повторений.
     // Отсортировать по убыванию популярности.
     public static void main(final String[] args) {
-
+        Homework hw = new Homework();
+        System.out.println(hw);
     }
 
 }

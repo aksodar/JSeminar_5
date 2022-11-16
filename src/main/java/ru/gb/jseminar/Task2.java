@@ -1,6 +1,5 @@
 package ru.gb.jseminar;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -15,7 +14,6 @@ public class Task2 {
     }
 
     public String getFinalCity(final Map<String, String> map){
-
         return "";
     }
 

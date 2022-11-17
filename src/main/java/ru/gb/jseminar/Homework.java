@@ -40,7 +40,7 @@ public class Homework {
         System.out.println(resultDict);  
                 
         Map <String, Integer> listName = new HashMap<>();
-        List <String> newList = Arrays.asList();
+        StringBuilder newList = new StringBuilder();
         for (String item : resultDict.keySet()) { 
             listName.put(item, resultDict.get(item).size());            
         }
@@ -56,7 +56,8 @@ public class Homework {
                                        
                 }              
             }
-            newList.add(name);
+            newList.append(name);
+            newList.append(" ");
             listName.remove(name);
 
         }

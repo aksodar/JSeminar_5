@@ -26,7 +26,7 @@ public class Homework {
 
     public String findContact(String text) {
         Map<String, List<String>> map = new TreeMap<>();
-        String result = "No repetitions";
+        String result = "";
         for (String contact : text.split(";")) {
             List<String> temp = List.of(contact.split(","));
             String name = temp.get(0) + " " + temp.get(1);
@@ -39,9 +39,10 @@ public class Homework {
                 map.get(name).addAll(Arrays.asList(number));
             }
         }
+        System.out.println(map);
         for (String key : map.keySet()) {
             if (map.get(key).size() > 1) {
-                result = String.format("Name:\t%s\nRepetitions:\t%d", key, map.get(key).size());
+                result += String.format("\nName:\t%s\nRepetitions:\t%d", key, map.get(key).size());
             }
         }
         return result;

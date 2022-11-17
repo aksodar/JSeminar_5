@@ -1,8 +1,8 @@
 package ru.gb.jseminar;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
 import java.util.Map;
+import java.util.logging.Logger;
 
 public class Task2 {
 
@@ -11,11 +11,22 @@ public class Task2 {
     // Пример 1: Input: s = [["Москва","Самара"], ["Курск","Пенза"],["Самара","Курск"]]  Output: Пенза
     // Пример 2: Input: s = [["Москва","Самара"]]  Output: Самара
     public static void main(final String[] args) {
-
+        Task2 task = new Task2();
+        Logger log = Logger.getLogger(Task2.class.getName());
+        Map<String, String> map = new HashMap<>();
+        map.putIfAbsent("Москва", "Самара");
+        map.putIfAbsent("Курск", "Пенза");
+        map.putIfAbsent("Самара", "Курск");
+        map.putIfAbsent("Пенза", "Ленинград");
+        log.info(String.valueOf(task.getFinalCity(map)));
     }
 
     public String getFinalCity(final Map<String, String> map){
-
+        for(String item: map.values()) {
+            if(!map.containsKey(item)) {
+                return(item);
+            }
+        }
         return "";
     }
 

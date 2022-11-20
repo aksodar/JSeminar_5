@@ -1,7 +1,6 @@
 package ru.gb.jseminar;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class Task1 {
 
@@ -10,6 +9,7 @@ public class Task1 {
     // Пример 2:     In: arr = [1, 1, 2]  Out: 1
     // Пример 3:     In: arr = [1, 1, 1, 2, 2]  Out: 4
     public static void main(final String[] args) {
+        Task1 t1 = new Task1();
 
     }
 

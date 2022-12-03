@@ -1,6 +1,6 @@
 package ru.gb.jseminar;
 
-import java.util.List;
+import java.util.HashMap;
 import java.util.Map;
 
 public class Task2 {
@@ -10,11 +10,22 @@ public class Task2 {
     // Пример 1: Input: s = [["Москва","Самара"], ["Курск","Пенза"],["Самара","Курск"]]  Output: Пенза
     // Пример 2: Input: s = [["Москва","Самара"]]  Output: Самара
     public static void main(final String[] args) {
-
+        Task2 tk = new Task2();
+        Map<String, String> taskMap = new HashMap<>();
+        taskMap.putIfAbsent("Москва", "Пенза");
+        taskMap.putIfAbsent("Курск", "Самара");
+        taskMap.putIfAbsent("Пенза", "Курск");
+        System.out.println(tk.getFinalCity(taskMap));
+       
     }
 
     public String getFinalCity(final Map<String, String> map){
-        return "";
+        for (String item: map.values()){
+            if(!map.containsKey(item)){
+                return item;
+            }
+        }
+        throw new IllegalStateException();
     }
 
 }

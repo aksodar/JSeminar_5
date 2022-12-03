@@ -1,5 +1,12 @@
 package ru.gb.jseminar;
 
+import java.util.logging.Logger;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+
 public class Homework {
 
     // Реализуйте структуру телефонной книги с помощью HashMap, учитывая, что 1 человек может иметь несколько телефонов.
@@ -7,7 +14,25 @@ public class Homework {
     // Написать программу, которая найдет и выведет повторяющиеся имена с количеством повторений.
     // Отсортировать по убыванию популярности.
     public static void main(final String[] args) {
-
+        String text = "Ева,Дарахвелидзе,89010348765;Ева,Дарахвелидзе,89010344345;Андрей,Иванов,89050377654;Дмитрий,Пономаренко,89344322343;Ева,Дарахвелидзе,89010340045;";
+        Homework hw = new Homework();
+        Logger lg = Logger.getLogger(Homework.class.getName());
+        lg.info(String.valueOf(hw.getDuplicateNames(text)));
     }
 
+    public Map<String, Integer> getDuplicateNames(final String phonebook){
+        Map<String, Integer> map = new HashMap<>();
+        for(String item: phonebook.split(";")){
+            List<String> list = Arrays.asList(item.split(","));
+            String person = list.get(0) + " " + list.get(1);
+            if(!map.containsKey(person)){
+                map.put(person, 1);
+            }else{
+                map.put(person, map.get(person)+ 1);
+            }
+            
+        }
+        return map;
+
+    } 
 }

@@ -1,18 +1,34 @@
 package ru.gb.jseminar;
 
-import java.util.Map;
+import java.util.*;
 
 public class Task3 {
 
-    // Р”Р°РЅР° СЃС‚СЂРѕРєР°. РќРµРѕР±С…РѕРґРёРјРѕ РЅР°РїРёСЃР°С‚СЊ РјРµС‚РѕРґ, РєРѕС‚РѕСЂС‹Р№ РѕС‚СЃРѕСЂС‚РёСЂСѓРµС‚ СЃР»РѕРІР° РІ СЃС‚СЂРѕРєРµ РїРѕ РґР»РёРЅРµ СЃ РїРѕРјРѕС‰СЊСЋ TreeMap.
-    // РЎС‚СЂРѕРєРё СЃ РѕРґРёРЅР°РєРѕРІРѕР№ РґР»РёРЅРѕР№ РЅРµ РґРѕР»Р¶РЅС‹ вЂњРїРѕС‚РµСЂСЏС‚СЊСЃСЏвЂќ.
+    // Дана строка. Необходимо написать метод, который отсортирует слова в строке по длине с помощью TreeMap.
+    // Строки с одинаковой длиной не должны “потеряться”.
     public static void main(final String[] args) {
-
+        Task3 task = new Task3();
+        String dano = "Мороз и солнце , день чудесный";
+        System.out.println(task.getSortedIncludesWords(dano));
     }
 
-    public String getSortedIncludesWords(final Map<String, String> map){
+    public Map<Integer, List<String>> getSortedIncludesWords(final String dano) {
+        Map<Integer, List<String>> result = new TreeMap<>();
+        List<String> array = Arrays.asList(dano.split(" "));
+        for (String i : array) {
+            if (result.containsKey(i.length())) {
+                List<String> temp2 = result.get(i.length());
+                temp2.add(i);
+                result.put(i.length(),temp2);
+            }
+            else{
+                List<String> temp = new ArrayList<>();
+                temp.add(i);
+                result.put(i.length(), temp);
+            }
 
-        return "";
+        }
+        return result;
     }
 
 }

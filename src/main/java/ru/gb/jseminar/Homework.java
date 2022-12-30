@@ -1,6 +1,5 @@
 package ru.gb.jseminar;
 
-
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -14,14 +13,16 @@ public class Homework {
     public static void main(final String[] args) {
         Homework pb = new Homework();
         Map<String, List<String>> phonebook = pb.bookMaker();
-        System.out.println(ANSIConstants.ANSI_WHITE_BACKGROUND + ANSIConstants.ANSI_BLACK + "Список контактов: " + ANSIConstants.ANSI_RESET);
+        System.out.println(ANSIConstants.ANSI_WHITE_BACKGROUND + ANSIConstants.ANSI_BLACK + "Список контактов: "
+                + ANSIConstants.ANSI_RESET);
         for (Object obj : phonebook.entrySet()) {
             Map.Entry<String, List<String>> entry = (Map.Entry) obj;
             System.out.print("Имя: " + entry.getKey());
             System.out.println("   тел.: " + entry.getValue());
         }
         System.out.println();
-        System.out.println(ANSIConstants.ANSI_WHITE_BACKGROUND + ANSIConstants.ANSI_BLACK + "Список отсортирован по количеству номеров: " + ANSIConstants.ANSI_RESET);
+        System.out.println(ANSIConstants.ANSI_WHITE_BACKGROUND + ANSIConstants.ANSI_BLACK
+                + "Список отсортирован по количеству номеров: " + ANSIConstants.ANSI_RESET);
         Map<Integer, Map<String, List<String>>> sorted = pb.sortByTelCount(phonebook);
         for (Object obj : sorted.entrySet()) {
             Map.Entry entry = (Map.Entry) obj;
@@ -33,9 +34,9 @@ public class Homework {
     public Map<String, List<String>> bookMaker() {
         Homework pb = new Homework();
         Map<String, List<String>> book = new HashMap<>();
-        book = pb.addPhoneNumber("Андреева А.А.", "89174563458", book);
-        book = pb.addPhoneNumber("Воробьев В.В.", "89854675883", book);
-        book = pb.addPhoneNumber("Воробьев В.В.", "88005753535", book);
+        book = pb.addPhoneNumber("Гресева А.А.", "89173273868", book);
+        book = pb.addPhoneNumber("Воробьева В.В.", "8985445687", book);
+        book = pb.addPhoneNumber("Воробьев В.В.", "88085426935", book);
         book = pb.addPhoneNumber("Гусева Г.Г.", "83476566880", book);
         book = pb.addPhoneNumber("Гусева Г.Г.", "89175467558", book);
         book = pb.addPhoneNumber("Гусева Г.Г.", "89874563774", book);

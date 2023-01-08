@@ -15,7 +15,7 @@ public class Homework {
         System.out.println();
         hw.printtelbook(hw.telBook(name));
         System.out.println();
-        System.out.println(hw.sortphonebok(hw.telBook(name )));
+        System.out.println(hw.sorttelbook(hw.telBook(name )));
 
     }
 
@@ -49,7 +49,7 @@ public class Homework {
         return book;
     }
 
-    public Map<Integer, List<String>> sortphonebok(Map<String, List<String>> book) {
+    public Map<Integer, List<String>> sorttelbook(Map<String, List<String>> book) {
         Map<Integer, List<String>> result = new HashMap<>();
         {
 

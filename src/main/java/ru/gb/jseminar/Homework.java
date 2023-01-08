@@ -12,8 +12,10 @@ public class Homework {
         String name = " Mask Ilon  +7-888-555-33-22, Ivanov Ivan Ivanovich 8-915-555-66-44, mask Ilon  8-917-564-89-96, Sidorov Sidor 69-69-69, " +
                 "Gates Bill 55-96-55, Gates Bill 78-89-55, Gates Bill +7918+555-66-77, petrov petr 56-88-96 ";
         System.out.println(hw.telBook(name));
-        System.out.println(hw.sortphonebok(hw.telBook(name )));
+        System.out.println();
         hw.printtelbook(hw.telBook(name));
+        System.out.println();
+        System.out.println(hw.sortphonebok(hw.telBook(name )));
 
     }
 

@@ -2,9 +2,8 @@ package ru.gb.jseminar;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
+import java.util.TreeMap;
 
 public class Homework {
 
@@ -25,9 +24,10 @@ public class Homework {
         System.out.println(hm.faindDoubleUser(users));
     }
 
-    public Map<Integer, List<String>> faindDoubleUser(List<String> list){
-        Map <Integer, List<String>> user_book = new HashMap<>();
+    public TreeMap <Integer, List<String>> faindDoubleUser(List<String> list){
+        TreeMap <Integer, List<String>> user_book = new TreeMap<>();
 
+        //Распарсиваем строку, подсчитываем количество номеров и добавляем в Map
         for(String user: list){
             String [] info_user = user.split(" ");
             Integer quantity_numb = info_user.length - 2;
